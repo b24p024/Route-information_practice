@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>架空路線 遅延・運休情報</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        main {
+            text-align: center;
+        }
+
+        section#info {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        .disclaimer {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>架空路線 遅延・運休情報</h1>
+            <p class="disclaimer">このサイトの内容は本物の路線のものではありません。</p>
+        </header>
+        <main>
+            <label for="delaySelect">遅延・運休情報を選択してください:</label>
+            <select id="delaySelect">
+                <option value="遅延・運休情報はありません。">遅延・運休情報はありません。</option>
+                <option value="10分遅延">10分遅延</option>
+                <option value="20分遅延">20分遅延</option>
+                <option value="30分遅延">30分遅延</option>
+                <option value="1日終日運休">1日終日運休</option>
+            </select>
+            <button id="updateInfo">情報を更新</button>
+            <section id="info">
+                <!-- JavaScriptで遅延・運休情報をここに挿入します -->
+            </section>
+        </main>
+        <footer>
+            <p>© 2024 架空交通株式会社</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const infoSection = document.getElementById("info");
+            const delaySelect = document.getElementById("delaySelect");
+            const updateInfoButton = document.getElementById("updateInfo");
+
+            // 情報を表示する関数
+            function displayInfo(selectedInfo) {
+                infoSection.innerHTML = ''; // 既存の情報をクリア
+                const infoParagraph = document.createElement("p");
+                infoParagraph.textContent = `現在の運行状況: ${selectedInfo}`;
+                infoSection.appendChild(infoParagraph);
+            }
+
+            // ボタンのクリックイベントを設定
+            updateInfoButton.addEventListener("click", function() {
+                const selectedInfo = delaySelect.value;
+                displayInfo(selectedInfo);
+            });
+
+            // ページ読み込み時にデフォルトの情報を表示
+            displayInfo(delaySelect.value);
+        });
+    </script>
+</body>
+</html>
